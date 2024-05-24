@@ -1,0 +1,23 @@
+<main>
+  @if (!canShowData()) {
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+  } @else {
+    @if (captain()) {
+      <h2>Captain</h2>
+      <app-member [memberData]="captain()"></app-member>
+    }
+    @for (p of displayData(); track p.project.id) {
+      <div>
+        <app-project [projectData]="p.project"></app-project>
+        @for (t of p.subteams; track t.subteam.id) {
+          <div>
+            <h4>{{ t.subteam.name }}</h4>
+            @for (m of t.members; track $index) {
+              <app-member [memberData]="m.member" [subteamRole]="m.subteam_role" [role]=""></app-member>
+            }
+          </div>
+        }
+      </div>
+    }
+  }
+</main>

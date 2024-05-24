@@ -1,0 +1,18 @@
+<mat-card style="">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{ memberData().name }}</mat-card-title>
+      <mat-card-subtitle>{{ memberData().discipline }}</mat-card-subtitle>
+      <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <p style="word-break: break-all">{{ memberData().bio }}</p>
+    @if (role()) {
+      {{ role() }}
+    }
+    @if (subteamRole()) {
+      {{ subteamRole() }}
+    }
+  </mat-card-content>
+</mat-card>
