@@ -1,0 +1,44 @@
+@import '../../var';
+
+main{
+  margin: 10px;
+}
+
+
+#filters-section{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+  gap: 10px;
+}
+
+#captain-section{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+
+.subteam {
+
+}
+
+.subteams-section {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.subteam-header {
+  margin-top: 10px;
+  font-size: large;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: $fg-color;
+}
+
+.members-section {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

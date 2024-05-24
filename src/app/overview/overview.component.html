@@ -2,21 +2,56 @@
   @if (!canShowData()) {
     <mat-progress-bar mode="buffer"></mat-progress-bar>
   } @else {
+
+    <div id="filters-section">
+      <mat-form-field>
+        <mat-label>Project</mat-label>
+        <mat-select>
+          @for (p of projects(); track $index) {
+            <mat-option [value]="p.id">{{ p.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Discipline</mat-label>
+        <mat-select>
+          @for (d of uniqueDisciplines(); track $index) {
+            <mat-option [value]="d">{{ d }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
     @if (captain()) {
-      <h2>Captain</h2>
-      <app-member [memberData]="captain()"></app-member>
+      <div id="captain-section">
+        <app-member [memberData]="captain()" [role]="'Captain'"></app-member>
+      </div>
     }
     @for (p of displayData(); track p.project.id) {
       <div>
         <app-project [projectData]="p.project"></app-project>
-        @for (t of p.subteams; track t.subteam.id) {
-          <div>
-            <h4>{{ t.subteam.name }}</h4>
-            @for (m of t.members; track $index) {
-              <app-member [memberData]="m.member" [subteamRole]="m.subteam_role" [role]=""></app-member>
-            }
-          </div>
-        }
+        <div class="subteams-section">
+          @if (p.members_no_subteam.length > 0){
+            <div class="members-section">
+              @for (m of p.members_no_subteam; track $index) {
+                <app-member [memberData]="m" [subteamRole]=""></app-member>
+              }
+            </div>
+          }
+          @for (t of p.subteams; track $index) {
+            <div class="subteam">
+              <div class="subteam-header">
+                {{ t.subteam.name }}
+              </div>
+              <div class="members-section">
+                @for (m of t.members; track $index) {
+                  <app-member [memberData]="m.member" [subteamRole]="m.subteam_role"></app-member>
+                }
+              </div>
+            </div>
+          }
+        </div>
       </div>
     }
   }

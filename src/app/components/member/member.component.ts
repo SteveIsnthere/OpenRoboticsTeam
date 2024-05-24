@@ -8,6 +8,7 @@ import {
   MatCardTitle,
   MatCardTitleGroup, MatCardXlImage
 } from "@angular/material/card";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-member',
@@ -19,7 +20,8 @@ import {
     MatCardContent,
     MatCardTitle,
     MatCardSubtitle,
-    MatCardXlImage
+    MatCardXlImage,
+    NgOptimizedImage
   ],
   templateUrl: './member.component.html',
   styleUrl: './member.component.scss'
