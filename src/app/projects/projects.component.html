@@ -1,0 +1,17 @@
+<main>
+  <div id="filters-section">
+    <p>
+      <mat-slide-toggle (click)="toggleRetired()"><b>Show Completed</b></mat-slide-toggle>
+    </p>
+    <p>
+      <mat-slide-toggle (click)="toggleNewestFirst()"><b>Oldest First</b></mat-slide-toggle>
+    </p>
+  </div>
+
+
+  <div id="projects">
+    @for (p of projects; track $index) {
+      <app-project [projectData]="p"></app-project>
+    }
+  </div>
+</main>

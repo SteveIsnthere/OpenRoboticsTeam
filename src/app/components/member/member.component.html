@@ -1,12 +1,17 @@
 <mat-card (click)="openDialog()">
   <mat-card-header>
     <mat-card-title-group>
-      <mat-card-title>{{ memberData().name }}</mat-card-title>
+      <mat-card-title class="font-bold">{{ memberData().name }}</mat-card-title>
       <mat-card-subtitle>
         @if (subteamRole()) {
           {{ subteamRole() }}
         } @else if (role()) {
           {{ role() }}
+        }
+        @if (memberData().is_retired) {
+          <div class="font-bold">
+            Retired
+          </div>
         }
       </mat-card-subtitle>
       <div style="display: flex">

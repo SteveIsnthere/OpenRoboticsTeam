@@ -1,0 +1,27 @@
+<main>
+  <div class="filters-section" style="margin-top: 20px">
+    <p>
+      <mat-slide-toggle (click)="toggleRetired()"><b>Show Retired</b></mat-slide-toggle>
+    </p>
+    <p>
+      <mat-slide-toggle (click)="toggleNewestFirst()"><b>Oldest First</b></mat-slide-toggle>
+    </p>
+  </div>
+
+  <div class="filters-section" style="margin-bottom: -5px">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Outline form field</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="inputName">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+      <button mat-stroked-button style="margin-left: 10px" (click)="searchMember()">Search</button>
+    </p>
+  </div>
+
+  <div id="projects">
+    @for (m of members; track $index) {
+      <app-member [memberData]="m"></app-member>
+    }
+  </div>
+</main>

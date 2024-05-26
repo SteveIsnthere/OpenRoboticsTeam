@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card (click)="openDialog()">
   <mat-card-header>
     <div style="margin-right: 10px;">
       <app-image-loader [imageLink]="projectData().image!" [size]="80"></app-image-loader>
@@ -13,6 +13,11 @@
           </div>
         }
         Started on {{ formatDateToMMDDYYYY(projectData().time) }}
+        @if(projectData().is_completed) {
+          <span class="font-bold" style="margin-left: 10px">
+            Completed
+          </span>
+        }
       </mat-card-subtitle>
     </mat-card-title-group>
   </mat-card-header>

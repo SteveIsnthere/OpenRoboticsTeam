@@ -2,43 +2,49 @@
   @if (!canShowData()) {
     <mat-progress-bar mode="buffer"></mat-progress-bar>
   } @else {
-    <div id="filters-section">
-      <mat-form-field appearance="outline">
-        <mat-label>Project</mat-label>
-        <mat-select [(ngModel)]="projectSelected" (selectionChange)="filterProjects()"
-                    [disabled]="projectSelected() != undefined || projects().length <= 1">
-          @for (p of projects(); track $index) {
-            <mat-option [value]="p.id">{{ p.name }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+    @if (showFilter()) {
+      <div id="filters-section">
+        <mat-form-field>
+          <mat-label>Project</mat-label>
+          <mat-select [(ngModel)]="projectSelected" (selectionChange)="filterProjects()"
+                      [disabled]="projectSelected() != undefined || projects().length <= 1">
+            @for (p of projects(); track $index) {
+              <mat-option [value]="p.id">{{ p.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Discipline</mat-label>
-        <mat-select [(ngModel)]="disciplineSelected" (selectionChange)="filterDisciplines()"
-                    [disabled]="disciplineSelected() != undefined || uniqueDisciplines().length <= 1">
-          @for (d of uniqueDisciplines(); track $index) {
-            <mat-option [value]="d">{{ d }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Discipline</mat-label>
+          <mat-select [(ngModel)]="disciplineSelected" (selectionChange)="filterDisciplines()"
+                      [disabled]="disciplineSelected() != undefined || uniqueDisciplines().length <= 1">
+            @for (d of uniqueDisciplines(); track $index) {
+              <mat-option [value]="d">{{ d }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Role</mat-label>
-        <mat-select [(ngModel)]="roleSelected" (selectionChange)="filterRoles()"
-                    [disabled]="roleSelected() != undefined || uniqueRoles().length <= 1">
-          @for (d of uniqueRoles(); track $index) {
-            <mat-option [value]="d">{{ d }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-    </div>
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="roleSelected" (selectionChange)="filterRoles()"
+                      [disabled]="roleSelected() != undefined || uniqueRoles().length <= 1">
+            @for (d of uniqueRoles(); track $index) {
+              <mat-option [value]="d">{{ d }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-    @if (disciplineSelected() || projectSelected() || roleSelected()) {
-      <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-        <button mat-fab (click)="reset()">
-          <mat-icon>refresh</mat-icon>
-        </button>
+      @if (disciplineSelected() || projectSelected() || roleSelected()) {
+        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+          <button mat-fab (click)="reset()">
+            <mat-icon>refresh</mat-icon>
+          </button>
+        </div>
+      }
+    } @else {
+      <div style="display: flex; justify-content: center; padding-bottom: 20px">
+        <button mat-stroked-button (click)="showFilter.set(!showFilter())" color="accent">Show Filters</button>
       </div>
     }
 

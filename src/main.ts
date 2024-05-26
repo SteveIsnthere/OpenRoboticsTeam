@@ -2,7 +2,8 @@ import {bootstrapApplication} from '@angular/platform-browser';
 import {appConfig} from './app/app.config';
 import {AppComponent} from './app/app.component';
 
-export const apiEndPoint: string = 'http://127.0.0.1:8851'
+// export const apiEndPoint: string = 'http://127.0.0.1:8851'
+export const apiEndPoint: string = 'https://dogshit.ngrok.app/' + "openroboticsteam"
 
 export function formatDateToMMDDYYYY(date: Date): string {
   date = new Date(date);

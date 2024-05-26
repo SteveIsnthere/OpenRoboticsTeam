@@ -15,7 +15,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatOption, MatSelect} from "@angular/material/select";
 import {MainService} from "../services/main.service";
 import {FormsModule} from "@angular/forms";
-import {MatFabButton} from "@angular/material/button";
+import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {
   MatCard,
@@ -27,6 +27,7 @@ import {
 } from "@angular/material/card";
 import {NgOptimizedImage} from "@angular/common";
 import {formatDateToMMDDYYYY} from "../../main";
+import {MatSlideToggle} from "@angular/material/slide-toggle";
 
 
 @Component({
@@ -56,7 +57,9 @@ import {formatDateToMMDDYYYY} from "../../main";
     MatCardTitle,
     MatCardTitleGroup,
     MatCardXlImage,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatSlideToggle,
+    MatButton
   ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss'
@@ -81,6 +84,8 @@ export class OverviewComponent {
   roleSelected: WritableSignal<string | undefined> = signal(undefined)
 
   finishedInit: WritableSignal<boolean> = signal(false)
+
+  showFilter: WritableSignal<boolean> = signal(false)
 
   constructor(public main: MainService) {
     effect(() => {

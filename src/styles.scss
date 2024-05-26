@@ -1,7 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
 @import 'var';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
 
+@include mat.core();
+
+$bold-theme: mat.define-theme((
+  typography: (
+    brand-family: $font-bold,
+  ),
+));
+
+$very-bold-theme: mat.define-theme((
+  typography: (
+    brand-family: $font-bold,
+    plain-family: $font-bold,
+  ),
+));
+
+html {
+  @include mat.button-theme($very-bold-theme);
+  @include mat.card-theme($bold-theme);
+  @include mat.dialog-theme($bold-theme);
+}
 html {
   background-color: rgba($fg-color, 0.3);
 }
@@ -23,3 +46,9 @@ body {
 .mdc-text-field--outlined {
   --mdc-outlined-text-field-container-shape: 14px;
 }
+
+.font-bold {
+  font-family: $font-bold;
+}
+
+

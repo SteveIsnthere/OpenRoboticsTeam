@@ -1,0 +1,84 @@
+<h2 mat-dialog-title id="name-tag">Member Edit</h2>
+<mat-dialog-content class="mat-typography">
+  <div style="display: flex; flex-wrap: wrap">
+    <div style="display: flex; justify-content: center; margin-bottom: 15px; align-items: flex-end; gap: 10px">
+      <app-image-loader [imageLink]="member?.image!" [size]="200"></app-image-loader>
+      <button mat-stroked-button color="accent">Upload New</button>
+    </div>
+
+    <div id="input-field">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="member!.name">
+      </mat-form-field>
+
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px">
+        <mat-slide-toggle [(ngModel)]="member!.is_captain">Is Captain</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="member!.is_retired">Is Retired</mat-slide-toggle>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Discipline</mat-label>
+        <input matInput [(ngModel)]="member!.discipline" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          @for (d of uniqueDisciplines(); track $index) {
+            <mat-option [value]="d">{{ d }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>About</mat-label>
+        <textarea matInput [(ngModel)]="member!.bio" cdkTextareaAutosize="true"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="member!.email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Linkedin</mat-label>
+        <input matInput [(ngModel)]="member!.linkedin">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Github</mat-label>
+        <input matInput [(ngModel)]="member!.github">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Web Link</mat-label>
+        <input matInput [(ngModel)]="member!.weblink">
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div style="height: 10px"></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" style="gap: 10px">
+  <!--  @if (member()?.linkedin) {-->
+  <!--    <a href="{{member()?.linkedin}}" target="_blank">-->
+  <!--      <img src="linkedin.png" alt="LinkedIn" style="width: 45px; height: 40px; display: block">-->
+  <!--    </a>-->
+  <!--  }-->
+
+  <!--  @if (member()?.github) {-->
+  <!--    <a href="{{member()?.github}}" target="_blank">-->
+  <!--      <img src="github.png" alt="GitHub" style="width: 40px; height: 40px; display: block">-->
+  <!--    </a>-->
+  <!--  }-->
+
+
+  <!--  @if (member()?.weblink) {-->
+  <!--    <a href="{{member()?.weblink}}" target="_blank">-->
+  <!--      <button mat-icon-button><mat-icon>link</mat-icon></button>-->
+  <!--    </a>-->
+  <!--  }-->
+
+  <div style="flex: 1"></div>
+  <button mat-flat-button mat-dialog-close color="accent" (click)="submit()">Update</button>
+  <button mat-raised-button mat-dialog-close>Close</button>
+
+</mat-dialog-actions>

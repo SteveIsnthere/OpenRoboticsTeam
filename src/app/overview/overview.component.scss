@@ -1,7 +1,7 @@
 @import '../../var';
 
 main {
-  margin: 10px;
+  margin: 20px;
   padding-bottom: 10px;
 }
 
@@ -20,6 +20,7 @@ main {
 
 #captain-section {
   display: flex;
+  justify-content: center;
   padding-bottom: 15px;
 
   #cap-container {

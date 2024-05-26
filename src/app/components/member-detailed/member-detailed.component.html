@@ -4,7 +4,7 @@
     <app-image-loader [imageLink]="member()?.image!" [size]="200"></app-image-loader>
   </div>
 
-  <div style="display: flex; justify-content: center">
+  <div style="display: flex; justify-content: center" class="font-bold">
     @if (member()?.is_retired) {
       <span class="status-tag">Retired</span>
     } @else {
@@ -14,6 +14,13 @@
 
   <p class="title">About me</p>
   <p>{{ member()?.bio }}</p>
+
+  <p class="title">Projects</p>
+  <div style="display: flex; flex-direction: column">
+    @for(p of projectsJoined; track $index){
+      <app-project [projectData]="p" mat-dialog-close></app-project>
+    }
+  </div>
 
   <p class="title">Time Joined</p>
   <b>{{ dateJoined() }}</b>
@@ -26,24 +33,29 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end" style="gap: 10px">
-  @if (member()?.github) {
-    <a href="{{member()?.github}}" target="_blank">
-      <img src="github.png" alt="GitHub" style="width: 40px; height: 40px;transform: translateY(3px);">
-    </a>
-  }
   @if (member()?.linkedin) {
     <a href="{{member()?.linkedin}}" target="_blank">
-      <img src="linkedin.png" alt="LinkedIn" style="width: 45px; height: 40px;transform: translateY(4px);">
+      <img src="linkedin.png" alt="LinkedIn" style="width: 45px; height: 40px; display: block">
+    </a>
+  }
+
+  @if (member()?.github) {
+    <a href="{{member()?.github}}" target="_blank">
+      <img src="github.png" alt="GitHub" style="width: 40px; height: 40px; display: block">
+    </a>
+  }
+
+
+  @if (member()?.weblink) {
+    <a href="{{member()?.weblink}}" target="_blank">
+      <button mat-icon-button><mat-icon>link</mat-icon></button>
     </a>
   }
 
   <div style="flex: 1"></div>
-  <!--  <button mat-button mat-dialog-close>Cancel</button>-->
-  <!--  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>-->
-
-  @if (member()?.weblink) {
-    <a href="{{member()?.weblink}}" target="_blank">
-      <button mat-raised-button color="primary">Website</button>
-    </a>
+  @if(main.isAdmin()){
+    <button mat-raised-button mat-dialog-close color="primary" (click)="editMember()">Edit</button>
+  } @else {
+    <button mat-raised-button mat-dialog-close color="accent">Close</button>
   }
 </mat-dialog-actions>

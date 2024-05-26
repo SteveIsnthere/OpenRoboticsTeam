@@ -10,7 +10,6 @@ import {
 } from "@angular/material/card";
 import {NgOptimizedImage} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
-import {MemberDetailedComponent} from "../member-detailed/member-detailed.component";
 import {ImageLoaderComponent} from "../image-loader/image-loader.component";
 
 @Component({
@@ -38,13 +37,11 @@ export class MemberComponent {
   constructor(public dialog: MatDialog) {
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(MemberDetailedComponent, {
-      data: this.memberData()
-    });
+  async openDialog() {
+    const { MemberDetailedComponent } = await import('../member-detailed/member-detailed.component');
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    this.dialog.open(MemberDetailedComponent, {
+      data: this.memberData()
     });
   }
 }
