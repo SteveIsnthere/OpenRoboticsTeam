@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class MainService {
   overview: WritableSignal<Overview> = signal({members: [], projects: [], roles: [], subteams: [], subteam_roles: []})
-  isAdmin: WritableSignal<boolean> = signal(true)
+  isAdmin: WritableSignal<boolean> = signal(false)
 
   constructor(private http: HttpClient) {
     this.http.get(apiEndPoint + "/overview/data").subscribe((data) => {
