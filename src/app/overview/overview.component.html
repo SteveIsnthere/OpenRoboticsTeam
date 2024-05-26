@@ -2,37 +2,68 @@
   @if (!canShowData()) {
     <mat-progress-bar mode="buffer"></mat-progress-bar>
   } @else {
-
     <div id="filters-section">
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Project</mat-label>
-        <mat-select>
+        <mat-select [(ngModel)]="projectSelected" (selectionChange)="filterProjects()"
+                    [disabled]="projectSelected() != undefined || projects().length <= 1">
           @for (p of projects(); track $index) {
             <mat-option [value]="p.id">{{ p.name }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Discipline</mat-label>
-        <mat-select>
+        <mat-select [(ngModel)]="disciplineSelected" (selectionChange)="filterDisciplines()"
+                    [disabled]="disciplineSelected() != undefined || uniqueDisciplines().length <= 1">
           @for (d of uniqueDisciplines(); track $index) {
+            <mat-option [value]="d">{{ d }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select [(ngModel)]="roleSelected" (selectionChange)="filterRoles()"
+                    [disabled]="roleSelected() != undefined || uniqueRoles().length <= 1">
+          @for (d of uniqueRoles(); track $index) {
             <mat-option [value]="d">{{ d }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
     </div>
 
-    @if (captain()) {
+    @if (disciplineSelected() || projectSelected() || roleSelected()) {
+      <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <button mat-fab (click)="reset()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+    }
+
+    @if (captain() && !projectSelected()) {
       <div id="captain-section">
-        <app-member [memberData]="captain()" [role]="'Captain'"></app-member>
+        <mat-card style="border-radius: 10px; height: 100%; box-shadow: none" id="cap-container">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title>Captain</mat-card-title>
+              <mat-card-subtitle>
+                Since {{ formatDateToMMDDYYYY(captain().time) }}
+              </mat-card-subtitle>
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content style="margin-top: 10px">
+            <app-member [memberData]="captain()" [role]="'Captain'"></app-member>
+          </mat-card-content>
+        </mat-card>
       </div>
     }
     @for (p of displayData(); track p.project.id) {
       <div>
         <app-project [projectData]="p.project"></app-project>
         <div class="subteams-section">
-          @if (p.members_no_subteam.length > 0){
+          @if (p.members_no_subteam.length > 0) {
             <div class="members-section">
               @for (m of p.members_no_subteam; track $index) {
                 <app-member [memberData]="m" [subteamRole]=""></app-member>
@@ -42,7 +73,8 @@
           @for (t of p.subteams; track $index) {
             <div class="subteam">
               <div class="subteam-header">
-                {{ t.subteam.name }}
+                <b>{{ t.subteam.name }}</b>
+                <mat-icon>arrow_drop_down</mat-icon>
               </div>
               <div class="members-section">
                 @for (m of t.members; track $index) {

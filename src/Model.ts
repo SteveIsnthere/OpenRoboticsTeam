@@ -56,3 +56,27 @@ export interface SubteamRole {
   subteam: Subteam;
   member: Member;
 }
+
+export interface Overview {
+  members: Member[]
+  projects: Project[]
+  roles: ProjectRole[]
+  subteams: Subteam[]
+  subteam_roles: SubteamRole[]
+}
+
+export interface MemberChunk {
+  member: Member
+  subteam_role: string | undefined
+}
+
+export interface SubteamChunk {
+  subteam: Subteam
+  members: MemberChunk[]
+}
+
+export interface ProjectChunk {
+  project: Project
+  subteams: SubteamChunk[]
+  members_no_subteam: Member[]
+}

@@ -1,23 +1,35 @@
 @import '../../var';
 
-main{
+main {
   margin: 10px;
+  padding-bottom: 10px;
 }
 
 
-#filters-section{
+#filters-section {
   display: flex;
   justify-content: center;
-  margin-bottom: 0;
+  flex-wrap: wrap;
+  margin: 20px 0;
   gap: 10px;
+
+  * {
+    margin-bottom: -20px;
+  }
 }
 
-#captain-section{
+#captain-section {
   display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
-}
+  padding-bottom: 15px;
 
+  #cap-container {
+    mat-card-title {
+      color: $primary;
+    }
+
+    background-color: $fg-color;
+  }
+}
 
 .subteam {
 
@@ -29,6 +41,10 @@ main{
 }
 
 .subteam-header {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+
   margin-top: 10px;
   font-size: large;
   padding: 15px;

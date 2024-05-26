@@ -1,8 +1,19 @@
-<mat-card style="" id="main">
+<mat-card>
   <mat-card-header>
+    <div style="margin-right: 10px;">
+      <app-image-loader [imageLink]="projectData().image!" [size]="80"></app-image-loader>
+    </div>
     <mat-card-title-group>
       <mat-card-title id="title">{{ projectData().name }}</mat-card-title>
-      <mat-card-subtitle>@if ( projectData().is_robo_cup){Robo Cup}</mat-card-subtitle>
+      <mat-card-subtitle>
+        @if (projectData().is_robo_cup) {
+          <div style="display: flex; align-items: center">
+            <span>Robo Cup </span>
+            <mat-icon>emoji_events</mat-icon>
+          </div>
+        }
+        Started on {{ formatDateToMMDDYYYY(projectData().time) }}
+      </mat-card-subtitle>
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content>

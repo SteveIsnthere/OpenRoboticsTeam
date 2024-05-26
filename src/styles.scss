@@ -3,7 +3,7 @@
 @import 'var';
 
 html {
-  background-color: $bg-color;
+  background-color: rgba($fg-color, 0.3);
 }
 
 html, body {
@@ -18,4 +18,8 @@ body {
 
 .spacer {
   flex: 1;
+}
+
+.mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 14px;
 }

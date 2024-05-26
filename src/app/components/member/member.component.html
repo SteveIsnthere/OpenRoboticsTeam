@@ -1,4 +1,4 @@
-<mat-card style="max-width: 300px; border-radius: 20px; height: 100%">
+<mat-card (click)="openDialog()">
   <mat-card-header>
     <mat-card-title-group>
       <mat-card-title>{{ memberData().name }}</mat-card-title>
@@ -11,12 +11,14 @@
       </mat-card-subtitle>
       <div style="display: flex">
         <div style="flex: 1; min-width: 10px"></div>
-        <img mat-card-xl-image id="profile-pic" ngSrc="https://material.angular.io/assets/img/examples/shiba2.jpg"
-             alt="" width="60" height="60">
+        <app-image-loader [imageLink]="memberData().image!" [size]="60"></app-image-loader>
       </div>
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content>
-    {{ memberData().discipline }}
+    <div id="discipline">
+      {{ memberData().discipline }}
+    </div>
+
   </mat-card-content>
 </mat-card>

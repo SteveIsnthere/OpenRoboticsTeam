@@ -1,10 +1,16 @@
 @import '../../../var';
 
 
-#main{
-  background-color: rgba(white,0.6);
+mat-card {
+  //max-width: 300px;
+  background-color: rgba(white, 0.6);
+  border-radius: 20px;
+  height: 100%;
+  box-shadow: none;
+  cursor: pointer;
+  border: rgba($primary, 0.4) 2px solid;
 }
 
-#title{
+#title {
   color: $primary;
 }

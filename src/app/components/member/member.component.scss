@@ -1,7 +1,22 @@
-#profile-pic{
+@import '../../../var';
+
+mat-card {
+  max-width: 300px;
+  border-radius: 10px;
+  height: 100%;
+  box-shadow: none;
+  cursor: pointer;
+  border: rgba($primary,0.4) 1px solid;
+}
+
+#profile-pic {
   width: 60px;
   height: 60px;
   border-radius: 13px;
   margin: 0 auto;
   display: block;
+}
+
+#discipline {
+  color: $primary;
 }

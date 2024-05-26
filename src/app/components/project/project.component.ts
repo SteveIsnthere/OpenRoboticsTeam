@@ -8,6 +8,9 @@ import {
   MatCardTitle,
   MatCardTitleGroup, MatCardXlImage
 } from "@angular/material/card";
+import {ImageLoaderComponent} from "../image-loader/image-loader.component";
+import {formatDateToMMDDYYYY} from "../../../main";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-project',
@@ -19,11 +22,14 @@ import {
     MatCardSubtitle,
     MatCardTitle,
     MatCardTitleGroup,
-    MatCardXlImage
+    MatCardXlImage,
+    ImageLoaderComponent,
+    MatIcon
   ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
 })
 export class ProjectComponent {
   projectData = input.required<Project>()
+  protected readonly formatDateToMMDDYYYY = formatDateToMMDDYYYY;
 }

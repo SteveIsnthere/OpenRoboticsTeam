@@ -1,0 +1,20 @@
+@import '../../../var';
+
+#name-tag {
+  background-color: $fg-color;
+}
+
+.status-tag {
+  background-color: $fg-color;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.title{
+  font-size: x-large;
+  margin-top: 20px
+}
+
+mat-dialog-actions {
+  background-color: $fg-color;
+}
